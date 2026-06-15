@@ -9,17 +9,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Work+Sans:wght@600&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8f9ff;
-            color: #0F172A;
-        }
         .font-work-sans {
             font-family: 'Work Sans', sans-serif;
         }
     </style>
 </head>
-<body class="antialiased flex flex-col min-h-screen">
+<body class="antialiased flex flex-col min-h-screen bg-slate-50 text-slate-900">
     <header class="bg-primary text-white sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
@@ -30,9 +25,9 @@
                 </div>
                 <nav class="hidden md:block">
                     <ul class="flex space-x-8 text-sm font-semibold">
-                        <li><a href="{{ route('cars.index') }}" class="hover:text-accent transition-colors">Showroom</a></li>
-                        <li><a href="#" class="hover:text-accent transition-colors">About Us</a></li>
-                        <li><a href="#" class="hover:text-accent transition-colors">Contact</a></li>
+                        <li><a href="{{ route('cars.index') }}" class="hover:text-accent transition-colors py-2">Showroom</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors py-2">About Us</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors py-2">Contact</a></li>
                     </ul>
                 </nav>
                 <div class="md:hidden">
