@@ -6,3 +6,10 @@ use App\Http\Controllers\CarController;
 Route::get('/', [CarController::class, 'index'])->name('cars.index');
 Route::get('/cars', [CarController::class, 'index']);
 Route::get('/cars/{id}', [CarController::class, 'show'])->name('cars.show');
+
+Route::get('/lang/{locale}', function ($locale) {
+    if (in_array($locale, ['id', 'en'])) {
+        session(['locale' => $locale]);
+    }
+    return back();
+})->name('lang.switch');

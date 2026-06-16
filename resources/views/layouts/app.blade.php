@@ -24,10 +24,23 @@
                     </a>
                 </div>
                 <nav class="hidden md:block">
-                    <ul class="flex space-x-8 text-sm font-semibold">
-                        <li><a href="{{ route('cars.index') }}" class="hover:text-accent transition-colors py-2">Showroom</a></li>
-                        <li><a href="#" class="hover:text-accent transition-colors py-2">About Us</a></li>
-                        <li><a href="#" class="hover:text-accent transition-colors py-2">Contact</a></li>
+                    <ul class="flex space-x-8 text-sm font-semibold items-center">
+                        <li><a href="{{ route('cars.index') }}" class="hover:text-accent transition-colors py-2">{{ __('ui.showroom') }}</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors py-2">{{ __('ui.about') }}</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors py-2">{{ __('ui.contact') }}</a></li>
+                        
+                        <!-- Language Toggle -->
+                        <li class="pl-4 border-l border-slate-600">
+                            @if(app()->getLocale() == 'id')
+                                <a href="{{ route('lang.switch', 'en') }}" class="flex items-center text-slate-300 hover:text-white transition-colors py-2">
+                                    EN
+                                </a>
+                            @else
+                                <a href="{{ route('lang.switch', 'id') }}" class="flex items-center text-slate-300 hover:text-white transition-colors py-2">
+                                    ID
+                                </a>
+                            @endif
+                        </li>
                     </ul>
                 </nav>
                 <div class="md:hidden">

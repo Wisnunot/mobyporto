@@ -13,7 +13,7 @@
         @if($car->is_consignment)
             <div class="absolute top-4 left-4">
                 <span class="bg-primary/95 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-sm backdrop-blur-sm">
-                    Consignment
+                    {{ __('ui.consignment') }}
                 </span>
             </div>
         @endif
@@ -44,7 +44,7 @@
         
         <div class="pt-4 border-t border-slate-100 flex items-center justify-between mt-auto group-hover:border-slate-200 transition-colors">
             <span class="text-sm font-semibold text-secondary flex items-center">
-                View Details
+                {{ __('ui.view_details') }}
                 <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </span>
             <span class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-secondary/10 transition-colors">
