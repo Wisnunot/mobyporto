@@ -28,44 +28,44 @@
 <!-- Quick Search (UI Only) -->
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-10 mb-20">
     <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-gray-100">
-        <form class="grid grid-cols-1 md:grid-cols-5 gap-6 items-end">
+        <form action="{{ route('cars.index') }}" method="GET" class="grid grid-cols-1 md:grid-cols-5 gap-6 items-end">
             <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-2">Brand</label>
-                <select class="w-full bg-slate-50 border border-slate-200 text-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent">
-                    <option>Any Brand</option>
-                    <option>Toyota</option>
-                    <option>Honda</option>
-                    <option>BMW</option>
-                    <option>Mercedes-Benz</option>
+                <select name="brand" class="w-full bg-slate-50 border border-slate-200 text-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent">
+                    <option value="Any Brand" {{ request('brand') === 'Any Brand' ? 'selected' : '' }}>Any Brand</option>
+                    <option value="Toyota" {{ request('brand') === 'Toyota' ? 'selected' : '' }}>Toyota</option>
+                    <option value="Honda" {{ request('brand') === 'Honda' ? 'selected' : '' }}>Honda</option>
+                    <option value="BMW" {{ request('brand') === 'BMW' ? 'selected' : '' }}>BMW</option>
+                    <option value="Mercedes-Benz" {{ request('brand') === 'Mercedes-Benz' ? 'selected' : '' }}>Mercedes-Benz</option>
                 </select>
             </div>
             <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-2">Price Range</label>
-                <select class="w-full bg-slate-50 border border-slate-200 text-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent">
-                    <option>Any Price</option>
-                    <option>Under Rp 200 Jt</option>
-                    <option>Rp 200 Jt - Rp 500 Jt</option>
-                    <option>Above Rp 500 Jt</option>
+                <select name="price_range" class="w-full bg-slate-50 border border-slate-200 text-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent">
+                    <option value="Any Price" {{ request('price_range') === 'Any Price' ? 'selected' : '' }}>Any Price</option>
+                    <option value="Under Rp 200 Jt" {{ request('price_range') === 'Under Rp 200 Jt' ? 'selected' : '' }}>Under Rp 200 Jt</option>
+                    <option value="Rp 200 Jt - Rp 500 Jt" {{ request('price_range') === 'Rp 200 Jt - Rp 500 Jt' ? 'selected' : '' }}>Rp 200 Jt - Rp 500 Jt</option>
+                    <option value="Above Rp 500 Jt" {{ request('price_range') === 'Above Rp 500 Jt' ? 'selected' : '' }}>Above Rp 500 Jt</option>
                 </select>
             </div>
             <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-2">Year</label>
-                <select class="w-full bg-slate-50 border border-slate-200 text-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent">
-                    <option>Any Year</option>
-                    <option>2020 & Newer</option>
-                    <option>2015 - 2019</option>
+                <select name="year" class="w-full bg-slate-50 border border-slate-200 text-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent">
+                    <option value="Any Year" {{ request('year') === 'Any Year' ? 'selected' : '' }}>Any Year</option>
+                    <option value="2020 & Newer" {{ request('year') === '2020 & Newer' ? 'selected' : '' }}>2020 & Newer</option>
+                    <option value="2015 - 2019" {{ request('year') === '2015 - 2019' ? 'selected' : '' }}>2015 - 2019</option>
                 </select>
             </div>
             <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-2">Transmission</label>
-                <select class="w-full bg-slate-50 border border-slate-200 text-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent">
-                    <option>Any Type</option>
-                    <option>Automatic</option>
-                    <option>Manual</option>
+                <select name="transmission" class="w-full bg-slate-50 border border-slate-200 text-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent">
+                    <option value="Any Type" {{ request('transmission') === 'Any Type' ? 'selected' : '' }}>Any Type</option>
+                    <option value="Automatic" {{ request('transmission') === 'Automatic' ? 'selected' : '' }}>Automatic</option>
+                    <option value="Manual" {{ request('transmission') === 'Manual' ? 'selected' : '' }}>Manual</option>
                 </select>
             </div>
             <div>
-                <button type="button" class="w-full bg-secondary hover:bg-teal-700 text-white font-bold py-3 px-4 rounded-lg transition-colors flex justify-center items-center h-[50px]">
+                <button type="submit" class="w-full bg-secondary hover:bg-teal-700 text-white font-bold py-3 px-4 rounded-lg transition-colors flex justify-center items-center h-[50px]">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     Search
                 </button>
@@ -172,7 +172,7 @@
                 <div class="text-sm font-bold text-gray-500 uppercase tracking-wide">Years Experience</div>
             </div>
             <div class="px-4">
-                <div class="text-4xl md:text-5xl font-extrabold text-primary mb-2">{{ $cars->count() }}</div>
+                <div class="text-4xl md:text-5xl font-extrabold text-primary mb-2">{{ method_exists($cars, 'total') ? $cars->total() : $cars->count() }}</div>
                 <div class="text-sm font-bold text-gray-500 uppercase tracking-wide">Available Inventory</div>
             </div>
         </div>

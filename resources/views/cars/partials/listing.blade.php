@@ -10,14 +10,14 @@
 </div>
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="flex flex-col lg:flex-row gap-8">
+    <form action="{{ route('cars.index') }}" method="GET" class="flex flex-col lg:flex-row gap-8">
         
-        <!-- Sidebar Filters (UI Only) -->
+        <!-- Sidebar Filters -->
         <div class="w-full lg:w-1/4">
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sticky top-28">
                 <div class="flex items-center justify-between mb-6">
                     <h3 class="text-lg font-bold text-primary">Filters</h3>
-                    <button class="text-sm font-semibold text-secondary hover:text-teal-700">Reset All</button>
+                    <a href="{{ route('cars.index') }}" class="text-sm font-semibold text-secondary hover:text-teal-700">Reset All</a>
                 </div>
                 
                 <div class="space-y-6">
@@ -25,68 +25,84 @@
                     <div>
                         <h4 class="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wider">Brand</h4>
                         <div class="space-y-2">
-                            <label class="flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="brand" value="" {{ !request('brand') || request('brand') === 'Any Brand' ? 'checked' : '' }} class="rounded-full border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
+                                <span class="ml-3 text-sm text-gray-600">All Brands</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="brand" value="Toyota" {{ request('brand') === 'Toyota' ? 'checked' : '' }} class="rounded-full border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
                                 <span class="ml-3 text-sm text-gray-600">Toyota</span>
                             </label>
-                            <label class="flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="brand" value="Honda" {{ request('brand') === 'Honda' ? 'checked' : '' }} class="rounded-full border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
                                 <span class="ml-3 text-sm text-gray-600">Honda</span>
                             </label>
-                            <label class="flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="brand" value="BMW" {{ request('brand') === 'BMW' ? 'checked' : '' }} class="rounded-full border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
                                 <span class="ml-3 text-sm text-gray-600">BMW</span>
                             </label>
-                            <label class="flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="brand" value="Mercedes-Benz" {{ request('brand') === 'Mercedes-Benz' ? 'checked' : '' }} class="rounded-full border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
                                 <span class="ml-3 text-sm text-gray-600">Mercedes-Benz</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="brand" value="Mitsubishi" {{ request('brand') === 'Mitsubishi' ? 'checked' : '' }} class="rounded-full border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
+                                <span class="ml-3 text-sm text-gray-600">Mitsubishi</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="brand" value="Suzuki" {{ request('brand') === 'Suzuki' ? 'checked' : '' }} class="rounded-full border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
+                                <span class="ml-3 text-sm text-gray-600">Suzuki</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="brand" value="Daihatsu" {{ request('brand') === 'Daihatsu' ? 'checked' : '' }} class="rounded-full border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
+                                <span class="ml-3 text-sm text-gray-600">Daihatsu</span>
                             </label>
                         </div>
                     </div>
                     
                     <div class="border-t border-gray-100 pt-6">
-                        <h4 class="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wider">Price Range</h4>
+                        <h4 class="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wider">Price Range (Rp)</h4>
                         <div class="grid grid-cols-2 gap-2">
-                            <input type="number" placeholder="Min" class="w-full text-sm rounded-lg border-gray-200 focus:ring-secondary focus:border-secondary">
-                            <input type="number" placeholder="Max" class="w-full text-sm rounded-lg border-gray-200 focus:ring-secondary focus:border-secondary">
+                            <input type="number" name="min_price" value="{{ request('min_price') }}" placeholder="Min" class="w-full text-sm rounded-lg border-gray-200 focus:ring-secondary focus:border-secondary p-2 border">
+                            <input type="number" name="max_price" value="{{ request('max_price') }}" placeholder="Max" class="w-full text-sm rounded-lg border-gray-200 focus:ring-secondary focus:border-secondary p-2 border">
                         </div>
                     </div>
 
                     <div class="border-t border-gray-100 pt-6">
                         <h4 class="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wider">Year</h4>
-                        <select class="w-full text-sm rounded-lg border-gray-200 focus:ring-secondary focus:border-secondary">
-                            <option>All Years</option>
-                            <option>2023 - 2024</option>
-                            <option>2020 - 2022</option>
-                            <option>2015 - 2019</option>
-                            <option>Older than 2015</option>
+                        <select name="year" class="w-full text-sm rounded-lg border-gray-200 focus:ring-secondary focus:border-secondary p-2 border">
+                            <option value="Any Year" {{ request('year') === 'Any Year' ? 'selected' : '' }}>All Years</option>
+                            <option value="2020 & Newer" {{ request('year') === '2020 & Newer' ? 'selected' : '' }}>2020 & Newer</option>
+                            <option value="2015 - 2019" {{ request('year') === '2015 - 2019' ? 'selected' : '' }}>2015 - 2019</option>
+                            <option value="Older than 2015" {{ request('year') === 'Older than 2015' ? 'selected' : '' }}>Older than 2015</option>
                         </select>
                     </div>
 
                     <div class="border-t border-gray-100 pt-6">
                         <h4 class="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wider">Transmission</h4>
-                        <div class="flex gap-2">
-                            <button class="flex-1 py-2 text-sm font-medium border border-secondary bg-secondary/10 text-secondary rounded-lg">Auto</button>
-                            <button class="flex-1 py-2 text-sm font-medium border border-gray-200 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors">Manual</button>
-                        </div>
+                        <select name="transmission" class="w-full text-sm rounded-lg border-gray-200 focus:ring-secondary focus:border-secondary p-2 border">
+                            <option value="Any Type" {{ request('transmission') === 'Any Type' ? 'selected' : '' }}>Any Type</option>
+                            <option value="Automatic" {{ request('transmission') === 'Automatic' || request('transmission') === 'Auto' ? 'selected' : '' }}>Automatic</option>
+                            <option value="Manual" {{ request('transmission') === 'Manual' ? 'selected' : '' }}>Manual</option>
+                        </select>
                     </div>
                     
                     <div class="border-t border-gray-100 pt-6">
                         <h4 class="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wider">Status</h4>
                         <div class="space-y-2">
-                            <label class="flex items-center">
-                                <input type="checkbox" checked class="rounded border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" name="status_available" value="1" {{ request('status_available') ? 'checked' : '' }} class="rounded border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
                                 <span class="ml-3 text-sm text-gray-600">Available</span>
                             </label>
-                            <label class="flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" name="status_consignment" value="1" {{ request('status_consignment') ? 'checked' : '' }} class="rounded border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
                                 <span class="ml-3 text-sm text-gray-600">Consignment</span>
                             </label>
                         </div>
                     </div>
 
                     <div class="pt-2">
-                        <button class="w-full bg-primary hover:bg-slate-800 text-white font-bold py-3 px-4 rounded-xl transition-colors">
+                        <button type="submit" class="w-full bg-primary hover:bg-slate-800 text-white font-bold py-3 px-4 rounded-xl transition-colors">
                             Apply Filters
                         </button>
                     </div>
@@ -99,21 +115,22 @@
             <!-- Top Bar -->
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 mb-8 flex flex-col sm:flex-row justify-between items-center gap-4">
                 <div class="flex items-center gap-2">
-                    <span class="font-bold text-primary">{{ $cars->count() }}</span>
+                    <span class="font-bold text-primary">{{ $cars->total() }}</span>
                     <span class="text-gray-500">vehicles found</span>
                 </div>
                 
                 <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-                    <div class="relative">
-                        <input type="text" placeholder="Search models..." class="w-full sm:w-64 pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:ring-secondary focus:border-secondary">
+                    <div class="relative flex-grow sm:flex-grow-0">
+                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Search models..." class="w-full sm:w-64 pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:ring-secondary focus:border-secondary">
                         <svg class="w-5 h-5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        <button type="submit" class="hidden">Search</button>
                     </div>
-                    <select class="py-2 pl-4 pr-8 border border-gray-200 rounded-lg text-sm font-medium focus:ring-secondary focus:border-secondary bg-gray-50">
-                        <option>Newest Arrivals</option>
-                        <option>Price: Low to High</option>
-                        <option>Price: High to Low</option>
-                        <option>Mileage: Low to High</option>
-                        <option>Year: Newest</option>
+                    <select name="sort" onchange="this.form.submit()" class="py-2 pl-4 pr-8 border border-gray-200 rounded-lg text-sm font-medium focus:ring-secondary focus:border-secondary bg-gray-50">
+                        <option value="newest" {{ request('sort') === 'newest' ? 'selected' : '' }}>Newest Arrivals</option>
+                        <option value="price_asc" {{ request('sort') === 'price_asc' ? 'selected' : '' }}>Price: Low to High</option>
+                        <option value="price_desc" {{ request('sort') === 'price_desc' ? 'selected' : '' }}>Price: High to Low</option>
+                        <option value="mileage_asc" {{ request('sort') === 'mileage_asc' ? 'selected' : '' }}>Mileage: Low to High</option>
+                        <option value="year_desc" {{ request('sort') === 'year_desc' ? 'selected' : '' }}>Year: Newest</option>
                     </select>
                 </div>
             </div>
@@ -126,21 +143,9 @@
                     @endforeach
                 </div>
                 
-                <!-- Pagination (UI Only) -->
+                <!-- Pagination -->
                 <div class="mt-12 flex justify-center">
-                    <nav class="flex items-center gap-1">
-                        <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 disabled:opacity-50" disabled>
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                        </button>
-                        <button class="w-10 h-10 rounded-lg bg-primary text-white font-bold flex items-center justify-center">1</button>
-                        <button class="w-10 h-10 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 font-medium flex items-center justify-center transition-colors">2</button>
-                        <button class="w-10 h-10 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 font-medium flex items-center justify-center transition-colors">3</button>
-                        <span class="px-2 text-gray-400">...</span>
-                        <button class="w-10 h-10 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 font-medium flex items-center justify-center transition-colors">8</button>
-                        <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        </button>
-                    </nav>
+                    {{ $cars->withQueryString()->links() }}
                 </div>
             @else
                 <div class="text-center py-24 bg-white rounded-2xl border border-gray-100 shadow-sm">
@@ -149,9 +154,9 @@
                     </svg>
                     <h3 class="mt-4 text-xl font-bold text-gray-900">No matches found</h3>
                     <p class="mt-2 text-gray-500">Try adjusting your filters or search terms.</p>
-                    <button class="mt-6 text-secondary font-bold hover:text-teal-700">Clear all filters</button>
+                    <a href="{{ route('cars.index') }}" class="inline-block mt-6 text-secondary font-bold hover:text-teal-700">Clear all filters</a>
                 </div>
             @endif
         </div>
-    </div>
+    </form>
 </div>
