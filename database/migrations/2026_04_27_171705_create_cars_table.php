@@ -19,6 +19,8 @@ return new class extends Migration
             $table->decimal('price', 15, 2);
             $table->integer('mileage');
             $table->string('transmission');
+            $table->string('fuel_type')->default('Petrol');
+            $table->string('color')->nullable();
             $table->text('description');
             $table->string('image')->nullable();
             $table->boolean('is_consignment')->default(false);

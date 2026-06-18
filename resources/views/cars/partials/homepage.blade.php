@@ -33,10 +33,11 @@
                 <label class="block text-sm font-semibold text-gray-700 mb-2">{{ __('ui.brand') }}</label>
                 <select name="brand" class="w-full bg-slate-50 border border-slate-200 text-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent">
                     <option value="Any Brand" {{ request('brand') === 'Any Brand' ? 'selected' : '' }}>{{ __('ui.any_brand') }}</option>
-                    <option value="Toyota" {{ request('brand') === 'Toyota' ? 'selected' : '' }}>Toyota</option>
-                    <option value="Honda" {{ request('brand') === 'Honda' ? 'selected' : '' }}>Honda</option>
-                    <option value="BMW" {{ request('brand') === 'BMW' ? 'selected' : '' }}>BMW</option>
-                    <option value="Mercedes-Benz" {{ request('brand') === 'Mercedes-Benz' ? 'selected' : '' }}>Mercedes-Benz</option>
+                    @if(isset($brands))
+                        @foreach($brands as $brand)
+                            <option value="{{ $brand }}" {{ request('brand') === $brand ? 'selected' : '' }}>{{ $brand }}</option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
             <div>
@@ -172,7 +173,7 @@
                 <div class="text-sm font-bold text-gray-500 uppercase tracking-wide">{{ __('ui.years_experience') }}</div>
             </div>
             <div class="px-4">
-                <div class="text-4xl md:text-5xl font-extrabold text-primary mb-2">{{ method_exists($cars, 'total') ? $cars->total() : $cars->count() }}</div>
+                <div class="text-4xl md:text-5xl font-extrabold text-primary mb-2">{{ $totalInventory ?? (method_exists($cars, 'total') ? $cars->total() : $cars->count()) }}</div>
                 <div class="text-sm font-bold text-gray-500 uppercase tracking-wide">{{ __('ui.available_inventory') }}</div>
             </div>
         </div>

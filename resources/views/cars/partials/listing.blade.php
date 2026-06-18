@@ -29,34 +29,14 @@
                                 <input type="radio" name="brand" value="" {{ !request('brand') || request('brand') === 'Any Brand' ? 'checked' : '' }} class="rounded-full border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
                                 <span class="ml-3 text-sm text-gray-600">{{ __('ui.all_brands') }}</span>
                             </label>
-                            <label class="flex items-center cursor-pointer">
-                                <input type="radio" name="brand" value="Toyota" {{ request('brand') === 'Toyota' ? 'checked' : '' }} class="rounded-full border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
-                                <span class="ml-3 text-sm text-gray-600">Toyota</span>
-                            </label>
-                            <label class="flex items-center cursor-pointer">
-                                <input type="radio" name="brand" value="Honda" {{ request('brand') === 'Honda' ? 'checked' : '' }} class="rounded-full border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
-                                <span class="ml-3 text-sm text-gray-600">Honda</span>
-                            </label>
-                            <label class="flex items-center cursor-pointer">
-                                <input type="radio" name="brand" value="BMW" {{ request('brand') === 'BMW' ? 'checked' : '' }} class="rounded-full border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
-                                <span class="ml-3 text-sm text-gray-600">BMW</span>
-                            </label>
-                            <label class="flex items-center cursor-pointer">
-                                <input type="radio" name="brand" value="Mercedes-Benz" {{ request('brand') === 'Mercedes-Benz' ? 'checked' : '' }} class="rounded-full border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
-                                <span class="ml-3 text-sm text-gray-600">Mercedes-Benz</span>
-                            </label>
-                            <label class="flex items-center cursor-pointer">
-                                <input type="radio" name="brand" value="Mitsubishi" {{ request('brand') === 'Mitsubishi' ? 'checked' : '' }} class="rounded-full border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
-                                <span class="ml-3 text-sm text-gray-600">Mitsubishi</span>
-                            </label>
-                            <label class="flex items-center cursor-pointer">
-                                <input type="radio" name="brand" value="Suzuki" {{ request('brand') === 'Suzuki' ? 'checked' : '' }} class="rounded-full border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
-                                <span class="ml-3 text-sm text-gray-600">Suzuki</span>
-                            </label>
-                            <label class="flex items-center cursor-pointer">
-                                <input type="radio" name="brand" value="Daihatsu" {{ request('brand') === 'Daihatsu' ? 'checked' : '' }} class="rounded-full border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
-                                <span class="ml-3 text-sm text-gray-600">Daihatsu</span>
-                            </label>
+                            @if(isset($brands))
+                                @foreach($brands as $brand)
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="radio" name="brand" value="{{ $brand }}" {{ request('brand') === $brand ? 'checked' : '' }} class="rounded-full border-gray-300 text-secondary focus:ring-secondary w-4 h-4">
+                                        <span class="ml-3 text-sm text-gray-600">{{ $brand }}</span>
+                                    </label>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                     

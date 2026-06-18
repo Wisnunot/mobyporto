@@ -96,11 +96,11 @@
                     </div>
                     <div>
                         <div class="text-sm text-gray-500 mb-1">{{ __('ui.fuel_type') }}</div>
-                        <div class="font-semibold text-primary text-lg">Petrol</div>
+                        <div class="font-semibold text-primary text-lg">{{ $car->fuel_type ?? 'Petrol' }}</div>
                     </div>
                     <div>
                         <div class="text-sm text-gray-500 mb-1">{{ __('ui.color') }}</div>
-                        <div class="font-semibold text-primary text-lg">Black Metallic</div>
+                        <div class="font-semibold text-primary text-lg">{{ $car->color ?? 'N/A' }}</div>
                     </div>
                     <div>
                         <div class="text-sm text-gray-500 mb-1">{{ __('ui.status') }}</div>
@@ -164,12 +164,6 @@
         </div>
     </div>
 </div>
-
-<!-- Related Cars Section -->
-@php
-    // Inline query to fetch related cars without modifying the controller
-    $relatedCars = \App\Models\Car::where('id', '!=', $car->id)->inRandomOrder()->take(3)->get();
-@endphp
 
 @if($relatedCars->count() > 0)
 <div class="bg-slate-50 py-16 border-t border-gray-200">

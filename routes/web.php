@@ -7,6 +7,8 @@ Route::get('/', [CarController::class, 'index'])->name('cars.index');
 Route::get('/cars', [CarController::class, 'index']);
 Route::get('/cars/{id}', [CarController::class, 'show'])->name('cars.show');
 
+Route::view('/about', 'about')->name('about');
+
 Route::get('/lang/{locale}', function ($locale) {
     if (in_array($locale, ['id', 'en'])) {
         session(['locale' => $locale]);

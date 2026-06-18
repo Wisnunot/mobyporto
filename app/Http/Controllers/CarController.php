@@ -55,7 +55,7 @@ class CarController extends Controller
 
         // 5. Filter by Status
         $query->when($request->has('status_available') || $request->has('status_consignment'), function ($q) use ($request) {
-            $q->where(function($subQ) use ($request) {
+            $q->where(function ($subQ) use ($request) {
                 if ($request->has('status_available')) {
                     $subQ->orWhere('status', 'available');
                 }
@@ -67,8 +67,10 @@ class CarController extends Controller
 
         // 6. Search input
         $query->when($request->search, function ($q) use ($request) {
-            $q->where('title', 'like', '%' . $request->search . '%')
-              ->orWhere('brand', 'like', '%' . $request->search . '%');
+            $q->where(function ($subQ) use ($request) {
+                $subQ->where('title', 'like', '%' . $request->search . '%')
+                    ->orWhere('brand', 'like', '%' . $request->search . '%');
+            });
         });
 
         // 7. Sorting
@@ -86,14 +88,36 @@ class CarController extends Controller
         }
 
         // 8. Pagination
-        $cars = $query->paginate(9);
+        $cars = $query->paginate(9)->withQueryString();
 
-        return view('cars.index', compact('cars'));
+        // Dynamic data for views
+        $brands = Car::select('brand')->distinct()->orderBy('brand')->pluck('brand');
+        $totalInventory = Car::where('status', 'available')->count();
+
+        return view('cars.index', compact('cars', 'brands', 'totalInventory'));
     }
 
     public function show($id)
     {
         $car = Car::findOrFail($id);
-        return view('cars.show', compact('car'));
+
+        // Related cars: same brand, excluding current car
+        $relatedCars = Car::where('brand', $car->brand)
+            ->where('id', '!=', $car->id)
+            ->inRandomOrder()
+            ->take(3)
+            ->get();
+
+        // If not enough same-brand cars, fill with random others
+        if ($relatedCars->count() < 3) {
+            $existingIds = $relatedCars->pluck('id')->push($car->id);
+            $moreCars = Car::whereNotIn('id', $existingIds)
+                ->inRandomOrder()
+                ->take(3 - $relatedCars->count())
+                ->get();
+            $relatedCars = $relatedCars->merge($moreCars);
+        }
+
+        return view('cars.show', compact('car', 'relatedCars'));
     }
 }

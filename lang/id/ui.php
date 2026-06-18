@@ -96,4 +96,23 @@ return [
     // Car Card Component
     'consignment' => 'Titipan',
     'view_details' => 'Lihat Detail',
+
+    // About Page
+    'about_label' => 'Tentang Kami',
+    'about_hero_subtitle' => 'Lebih dari sekadar ruang pamer — kami adalah mitra terpercaya Anda dalam menemukan kendaraan sempurna yang sesuai dengan gaya hidup dan ambisi Anda.',
+    'about_our_story' => 'Cerita Kami',
+    'about_story_title' => 'Dibangun dengan Semangat, Didorong oleh Kepercayaan',
+    'about_story_p1' => 'Mobyporto didirikan dengan satu visi: membuat pengalaman membeli mobil premium sama menyenangkannya dengan mengendarainya. Apa yang bermula sebagai proyek personal kini telah berkembang menjadi ruang pamer terpercaya yang melayani ratusan pelanggan puas.',
+    'about_story_p2' => 'Kami percaya setiap mobil punya cerita, dan setiap pembeli layak mendapatkan pengalaman yang transparan, jujur, dan tanpa tekanan. Itulah mengapa kami memilih sendiri setiap kendaraan dalam inventaris kami, memastikan memenuhi standar kualitas ketat kami.',
+    'about_story_p3' => 'Mulai dari layanan titipan hingga konsultasi personal, komitmen kami melampaui sekadar transaksi. Kami di sini untuk membangun hubungan jangka panjang, satu mobil pada satu waktu.',
+    'about_our_values' => 'Yang Kami Junjung',
+    'about_values_title' => 'Nilai Utama Kami',
+    'about_value_1_title' => 'Kualitas Terjamin',
+    'about_value_1_desc' => 'Setiap kendaraan melewati inspeksi menyeluruh multi-titik. Kami hanya menjual mobil yang kami yakini kualitasnya.',
+    'about_value_2_title' => 'Harga Transparan',
+    'about_value_2_desc' => 'Tanpa biaya tersembunyi, tanpa markup berlebihan. Harga kami adil, jujur, dan didukung data pasar yang nyata.',
+    'about_value_3_title' => 'Dukungan Ahli',
+    'about_value_3_desc' => 'Tim spesialis otomotif kami siap membimbing Anda — dari memilih model yang tepat hingga mengurus dokumen dan pembiayaan.',
+    'about_cta_title' => 'Siap Merasakan Perbedaan Moby?',
+    'about_cta_desc' => 'Jelajahi inventaris kurasi kami dan temukan mobil sempurna Anda hari ini.',
 ];
